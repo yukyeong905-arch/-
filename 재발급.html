@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 민원 안내 - 면허증 재발급</title>
+
+<style>
+
+body{
+font-family:system-ui;
+background:#f4f6fa;
+margin:0;
+}
+
+.wrap{
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:14px;
+margin-bottom:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #ddd;
+background:white;
+font-size:15px;
+}
+
+button:hover{
+background:#eef3ff;
+}
+
+.title{
+font-size:20px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.result{
+line-height:1.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="card">
+
+<div class="title">AI 민원 안내 시스템</div>
+
+<p>면허증 재발급 사유를 선택하면<br>
+필요한 준비물과 절차를 안내해드립니다.</p>
+
+<button onclick="show('lost')">면허증 분실</button>
+<button onclick="show('damage')">면허증 훼손</button>
+<button onclick="show('name')">이름 변경 (개명)</button>
+<button onclick="show('normal')">단순 재발급</button>
+
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function show(type){
+
+let html="<div class='card result'>";
+html+="<h3>AI 안내 결과</h3>";
+
+if(type==="lost"){
+
+html+=`
+<h4>🔴 면허증 분실</h4>
+
+<b>준비물</b><br>
+- 신분증<br>
+(주민등록증 / 여권 / 모바일 신분증)<br><br>
+
+⚠ 사진 / 사본 불가<br><br>
+
+<b>신분증이 없는 경우</b><br>
+→ 지문조회 진행<br><br>
+
+⚠ 지문조회 불가 시<br>
+→ 업무 진행 불가<br><br>
+
+📷 사진 변경 원하는 경우만 준비<br>
+3.5 × 4.5 / 흰색 배경<br><br>
+
+📍 1층 B동 신체검사실 옆<br>
+즉석사진기 촬영 가능<br><br>
+
+🎫 번호표 : 면허증 재발급
+`;
+
+}
+
+if(type==="damage"){
+
+html+=`
+<h4>🟡 면허증 훼손</h4>
+
+<b>준비물</b><br>
+- 기존 면허증<br><br>
+
+📌 면허증이 있으면<br>
+→ 다른 신분증 필요 없음<br><br>
+
+📷 사진 변경 원하는 경우만 준비<br>
+3.5 × 4.5 / 흰색 배경<br><br>
+
+🎫 번호표 : 면허증 재발급
+`;
+
+}
+
+if(type==="name"){
+
+html+=`
+<h4>🟢 이름 변경 (개명)</h4>
+
+<b>준비물</b><br>
+- 기존 면허증<br>
+- 개명된 신분증<br>
+또는 발급사실확인서<br><br>
+
+📷 사진 변경 원하는 경우만 준비<br>
+3.5 × 4.5 / 흰색 배경<br><br>
+
+🎫 번호표 : 면허증 재발급
+`;
+
+}
+
+if(type==="normal"){
+
+html+=`
+<h4>🔵 단순 재발급</h4>
+
+<b>준비물</b><br>
+- 신분증<br><br>
+
+📷 사진 변경 원하는 경우만 준비<br>
+3.5 × 4.5 / 흰색 배경<br><br>
+
+🎫 번호표 : 면허증 재발급
+`;
+
+}
+
+html+="</div>";
+
+document.getElementById("result").innerHTML=html;
+
+}
+
+</script>
+
+</body>
+</html>
