@@ -43,23 +43,41 @@ font-size:18px;
 </head>
 
 <body>
-
 <h1>🚗 운전면허 민원 안내</h1>
-
-<p>언어 선택 / Language</p>
-
-<button onclick="setLang('ko')">한국어</button>
-<button onclick="setLang('en')">English</button>
-<button onclick="setLang('cn')">中文</button>
-<button onclick="setLang('vn')">Tiếng Việt</button>
 
 <h2>민원 선택</h2>
 
-<button onclick="guide('renew')">적성검사 / 갱신</button>
-<button onclick="guide('reissue')">면허증 재발급</button>
-<button onclick="guide('name')">이름 변경</button>
+<button onclick="location.href='적성검사.html'">
+적성검사 / 갱신
+</button>
 
-<button class="voice" onclick="startVoice()">🎤 음성 질문</button>
+<button onclick="location.href='재발급.html'">
+면허증 재발급
+</button>
+
+<button onclick="location.href='7년무사고.html'">
+7년 무사고
+</button>
+
+<button class="voice" onclick="startVoice()">
+🎤 음성 질문
+</button>
+
+<hr style="margin:40px 0">
+
+<h2>🌏 Foreign Infomation</h2>
+
+<button onclick="setLang('en')">
+English
+</button>
+
+<button onclick="setLang('cn')">
+中文
+</button>
+
+<button onclick="setLang('vn')">
+Tiếng Việt
+</button>
 
 <div class="result" id="result">
 QR을 통해 필요한 준비물을 안내합니다.
