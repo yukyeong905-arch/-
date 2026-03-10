@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
 <title>운전면허 민원 안내</title>
@@ -15,6 +16,11 @@ padding:20px;
 
 h1{
 font-size:30px;
+margin-bottom:20px;
+}
+
+h2{
+margin-top:40px;
 }
 
 button{
@@ -76,50 +82,74 @@ font-size:20px;
 <h2>🌏 Foreign Driver Service</h2>
 
 <button>English</button>
+
 <button>中文</button>
+
 <button>Tiếng Việt</button>
+
 
 <script>
 
 function speak(text){
+
 const msg = new SpeechSynthesisUtterance(text)
-msg.lang = "ko-KR"
+
+msg.lang="ko-KR"
+
 speechSynthesis.speak(msg)
+
 }
+
 
 function startVoice(){
 
 const recognition = new webkitSpeechRecognition()
-recognition.lang = "ko-KR"
+
+recognition.lang="ko-KR"
+
 recognition.start()
 
 document.getElementById("result").innerText="듣고 있습니다..."
 
-recognition.onresult = function(event){
+recognition.onresult=function(event){
 
 let text = event.results[0][0].transcript
 
-document.getElementById("result").innerText =
-"인식된 질문 : " + text
+document.getElementById("result").innerText="인식된 질문 : " + text
 
 if(text.includes("재발급")){
 
 speak("면허 재발급 안내로 이동합니다")
+
+setTimeout(function(){
+
 location.href="reissue.html"
+
+},2000)
 
 }
 
 else if(text.includes("적성") || text.includes("갱신")){
 
 speak("적성검사 안내로 이동합니다")
+
+setTimeout(function(){
+
 location.href="aptitude.html"
+
+},2000)
 
 }
 
 else if(text.includes("이름") || text.includes("개명")){
 
 speak("이름 변경 안내로 이동합니다")
+
+setTimeout(function(){
+
 location.href="name.html"
+
+},2000)
 
 }
 
@@ -127,8 +157,7 @@ else{
 
 speak("재발급 적성검사 이름변경 중 말씀해주세요")
 
-document.getElementById("result").innerText =
-"재발급 / 적성검사 / 이름변경 중 말씀해주세요"
+document.getElementById("result").innerText="재발급 / 적성검사 / 이름변경 중 말씀해주세요"
 
 }
 
@@ -139,4 +168,5 @@ document.getElementById("result").innerText =
 </script>
 
 </body>
+
 </html>
