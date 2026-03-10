@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>운전면허 민원 안내</title>
+
+<style>
+body{
+font-family: sans-serif;
+text-align:center;
+background:#f5f5f5;
+padding:20px;
+}
+
+h1{
+font-size:28px;
+}
+
+button{
+width:90%;
+max-width:400px;
+padding:18px;
+margin:10px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:#2d7df6;
+color:white;
+}
+
+.voice{
+background:#28a745;
+}
+
+.result{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚗 운전면허 민원 안내</h1>
+
+<p>언어 선택 / Language</p>
+
+<button onclick="setLang('ko')">한국어</button>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('cn')">中文</button>
+<button onclick="setLang('vn')">Tiếng Việt</button>
+
+<h2>민원 선택</h2>
+
+<button onclick="guide('renew')">적성검사 / 갱신</button>
+<button onclick="guide('reissue')">면허증 재발급</button>
+<button onclick="guide('name')">이름 변경</button>
+
+<button class="voice" onclick="startVoice()">🎤 음성 질문</button>
+
+<div class="result" id="result">
+QR을 통해 필요한 준비물을 안내합니다.
+</div>
+
+<script>
+
+let lang="ko"
+
+const data={
+ko:{
+renew:"적성검사 준비물: 기존 면허증, 6개월 이내 사진 1장",
+reissue:"재발급 준비물: 신분증 또는 기존 면허증",
+name:"이름 변경 준비물: 기존 면허증 + 개명된 신분증 또는 발급사실확인서"
+},
+
+en:{
+renew:"Renewal: License + recent photo",
+reissue:"Reissue: ID card or old license",
+name:"Name change: License + updated ID"
+},
+
+cn:{
+renew:"换证: 驾照 + 近期照片",
+reissue:"补发: 身份证或旧驾照",
+name:"改名: 驾照 + 新身份证"
+},
+
+vn:{
+renew:"Gia hạn: Bằng lái + ảnh",
+reissue:"Cấp lại: CMND hoặc bằng lái",
+name:"Đổi tên: Bằng lái + giấy tờ mới"
+}
+}
+
+function setLang(l){
+lang=l
+document.getElementById("result").innerText="선택된 언어로 안내합니다."
+}
+
+function guide(type){
+document.getElementById("result").innerText=data[lang][type]
+}
+
+function startVoice(){
+
+const recognition=new(window.SpeechRecognition||window.webkitSpeechRecognition)()
+
+recognition.lang="ko-KR"
+
+recognition.onresult=function(event){
+
+const text=event.results[0][0].transcript
+
+if(text.includes("재발급")){
+guide("reissue")
+}
+
+else if(text.includes("적성")||text.includes("갱신")){
+guide("renew")
+}
+
+else if(text.includes("이름")||text.includes("개명")){
+guide("name")
+}
+
+else{
+document.getElementById("result").innerText="질문을 이해하지 못했습니다."
+}
+
+}
+
+recognition.start()
+
+}
+
+</script>
+
+</body>
+</html>
